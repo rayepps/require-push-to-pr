@@ -1,9 +1,12 @@
 name: 'Require Given Push is to a PR'
-description: 'Requires that the current push commit is to an open PR branch. If not, action will fail.'
+description: 'Requires that the current push commit is to an open PR branch. Outputs a bool to indicate result.'
 inputs:
   github-token:
     description: 'GitHub Token'
     required: true
+outputs:
+  pass:
+    description: 'Boolean value (true | false) to indicate if the push was infact to a PR'
 runs:
   using: 'node12'
   main: 'index.js'

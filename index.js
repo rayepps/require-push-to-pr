@@ -22,16 +22,10 @@ async function run() {
 
   const pull = pulls.find(p => p.head.sha == push_commmit_sha)
 
-  if (!pull) {
-    // There will obviously be many pushes that are not to branches with
-    // active PRs. So, this could mean nothing. It could however mean that
-    // something is wrong because there really is a PR for this push but
-    // we couldn't find it.
-    core.setFailed(`The pushed commit is not to a branch with an open PR`)
-    return
-  }
+  const pass = pull ? 'true' : 'false'
 
-  core.debug(`Success, the pushed commit is to an open PR`)
+  core.debug(`Check complete. The pushed commit is to an open PR - ${pass}`)
+  core.setOutput('pass', pass)
 
 }
 
